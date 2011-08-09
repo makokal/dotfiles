@@ -1,14 +1,23 @@
+export CPATH=/opt/local/include
+export LIBRARY_PATH=/opt/local/lib
+export DYLD_FALLBACK_LIBRARY_PATH=$DYLD_FALLBACK_LIBRARY_PATH:/opt/local/lib:/usr/local/lib
+export PATH=/opt/local/bin:$PATH
+
+
+## prompt
 [ -z "$PS1" ] && return
 
 # Basic options
 export HISTCONTROL=ignoredups
 export COLORFGBG='default;default'
 
-shopt -s checkwinsize
-#eval "$(dircolors -b /etc/dircolors)"
+# some colors
+export CLICOLOR=1
+export TERM=xterm-color
+export LSCOLORS=exfxcxdxbxegedabagacad
 
-# Aliases
-alias ls='ls -h --color=auto'
+#Aliases
+alias ls='ls -h'
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
@@ -36,71 +45,12 @@ BLUE='\[\033[0;34m\]'
 NORMAL='\[\033[00m\]'
 PS1="${BLUE}(${RED}\w${BLUE}) ${NORMAL}\h ${RED}\$ ${NORMAL}"
 
-# Paths
-PATH=$PATH:${HOME}/bin:/usr/lib/wine/bin:/sbin:/usr/sbin
-export PATH=$PATH:/usr/local/bin
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/wine/lib:/usr/local/lib
-export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
 
-# X Terminal titles
-case "$TERM" in
-xterm*|rxvt*)
-	PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
-	;;
-*)
-	;;
-esac
+################# Qt
+PATH=/Developer/SDKs/QtSDK/Desktop/Qt/4.8.0/gcc/bin:$PATH
+#PATH=/usr/local/Trolltech/Qt-4.8.0/bin:$PATH 
+export PATH 
+QTDIR=/Developer/SDKs/QtSDK/Desktop/Qt/4.8.0/gcc
+#QTDIR=/usr/local/Trolltech/Qt-4.8.0 
+export QTDIR 
 
-# Functions
-extract () {
-	if [ -f $1 ] ; then
-		case $1 in
-			*.tar.bz2)	tar xjf $1		;;
-			*.tar.gz)	tar xzf $1		;;
-			*.bz2)		bunzip2 $1		;;
-			*.rar)		rar x $1		;;
-			*.gz)		gunzip $1		;;
-			*.tar)		tar xf $1		;;
-			*.tbz2)		tar xjf $1		;;
-			*.tgz)		tar xzf $1		;;
-			*.zip)		unzip $1		;;
-			*.Z)		uncompress $1	;;
-			*)			echo "'$1' cannot be extracted via extract()" ;;
-		esac
-	else
-		echo "'$1' is not a valid file"
-	fi
-}
-ziprm () {
-	if [ -f $1 ] ; then
-		unzip $1
-		rm $1
-	else
-		echo "Need a valid zipfile"
-	fi
-}
-psgrep() {
-	if [ ! -z $1 ] ; then
-		echo "Grepping for processes matching $1..."
-		ps aux | grep $1 | grep -v grep
-	else
-		echo "!! Need name to grep for"
-	fi
-}
-grab() {
-	sudo chown -R ${USER} ${1:-.}
-}
-
-# Bash completion
-if [ -f /etc/bash_completion ]; then
-	. /etc/bash_completion
-fi
-
-# Locale and editor
-export EDITOR=vim
-export BROWSER="firefox '%s' &"
-
-## ROS
-source /opt/ros/diamondback/setup.bash
-export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/Workspace
-export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/Workspace/ds-ros-pkg
