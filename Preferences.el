@@ -4,7 +4,8 @@
 (eval-after-load "color-theme"
   '(progn
      (color-theme-initialize)
-     (color-theme-midnight)))
+;     (color-theme-jsc-light)
+     ))
 
 (tool-bar-mode -1)
 
@@ -105,6 +106,13 @@ unless return was pressed outside the comment"
 			   (local-set-key "\r" 'my-javadoc-return)))
 (add-hook 'c-mode-hook (lambda () 
 			   (local-set-key "\r" 'my-javadoc-return)))
+
+
+;; Jemdoc mode
+(load-library "jemdoc")
+(setq auto-mode-alist
+      (cons '("\\.jemdoc$" . jemdoc-mode) auto-mode-alist))
+
 
 ;; python mode
 (load-library "python-mode")
