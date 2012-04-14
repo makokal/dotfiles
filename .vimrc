@@ -1,54 +1,41 @@
-set nobackup
-set nowritebackup
-set noswapfile
-"set fileencodings=utf-8
-"set encoding=utf-8
+""
+"" Janus setup
+""
 
-"set tabs to 4 spaces.
-set tabstop=4
-set expandtab
-set shiftwidth=4
+" Define paths
+let g:janus_path = escape(fnamemodify(resolve(expand("<sfile>:p")), ":h"), ' ')
+let g:janus_vim_path = escape(fnamemodify(resolve(expand("<sfile>:p" . "vim")), ":h"), ' ')
+let g:janus_custom_path = expand("~/.janus")
 
-"automatically indent
-set smartindent
-set cindent
+" Source janus's core
+exe 'source ' . g:janus_vim_path . '/core/before/plugin/janus.vim'
 
-"show line numbers on the left
-set number
+" You should note that groups will be processed by Pathogen in reverse
+" order they were added.
+call janus#add_group("tools")
+call janus#add_group("langs")
+call janus#add_group("colors")
 
-"case insensitive search
-set ignorecase
-set smartcase
-set mouse=a
-set showcmd
-syntax on
-set ruler
-set cursorline
-set showtabline=2
+""
+"" Customisations
+""
 
-" ============================= Proper Vim setup ====================
-" minibuffer
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1
+set background=dark
+colorscheme solarized
 
-"ctags
-let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
-
-"python autocomplete
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-
-" Remember last location in file
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-    \| exe "normal g'\"" | endif
+if filereadable(expand("~/.vimrc.before"))
+  source ~/.vimrc.before
 endif
 
-" Tab completion
-set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
 
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
+" Disable plugins prior to loading pathogen
+exe 'source ' . g:janus_vim_path . '/core/plugins.vim'
 
+""
+"" Pathogen setup
+""
+
+" Load all groups, custom dir, and janus core
+call janus#load_pathogen()
+
+" .vimrc.after is loaded after the plugins have loaded
