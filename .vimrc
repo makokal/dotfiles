@@ -20,8 +20,9 @@ call janus#add_group("colors")
 "" Customisations
 ""
 
+set cursorline
 set background=dark
-colorscheme solarized
+colorscheme Tomorrow-Night
 
 if filereadable(expand("~/.vimrc.before"))
   source ~/.vimrc.before
