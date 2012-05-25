@@ -7,7 +7,7 @@ set guioptions-=r
 set guioptions-=L
 
 set background=dark
-colorscheme Tomorrow-Night
+colorscheme vividchalk
 
 if filereadable(expand("~/.gvimrc.before"))
   source ~/.gvimrc.before
