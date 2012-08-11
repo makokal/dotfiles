@@ -1,13 +1,15 @@
-set guifont=Menlo:h12
-set lines=60
-set columns=170
 set guioptions-=T
-set guioptions-=l
+set guioptions-=m
 set guioptions-=r
+set guioptions-=l
 set guioptions-=L
 
-set background=dark
-colorscheme vividchalk
+set visualbell
+
+"set guifont=UbuntuMono\ Powerline:h14
+set guifont=Menlo:h12
+
+colorscheme molokai
 
 if filereadable(expand("~/.gvimrc.before"))
   source ~/.gvimrc.before
