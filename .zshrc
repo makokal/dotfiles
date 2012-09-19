@@ -5,11 +5,13 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="muse"
+#ZSH_THEME="robbyrussell"
+ZSH_THEME="rkj"
+
 
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias ohmyzsh="vim ~/.oh-my-zsh"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -29,15 +31,20 @@ alias zshconfig="vim ~/.zshrc"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git rails )
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-alias maindev='source ~/.virtualenvs/maindev/bin/activate'
 
 # Customize to your needs...
-export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin
+export PATH=/usr/texbin:/usr/local/bin:/bin:/usr/local/sbin:/sbin:/usr/bin:/usr/sbin:/usr/X11/bin:~/.cabal/bin
+
+# add opencv python and other brew related python
 export PYTHONPATH="/usr/local/lib/python2.7/site-packages:$PYTHONPATH"
 
-# rvm
+
+# undo the annoying autocorrect option
+unsetopt correct_all
+
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
+
+alias maindev="source ~/.venvs/maindev/bin/activate"
