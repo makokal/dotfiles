@@ -18,16 +18,15 @@ call janus#add_group("colors")
 
 ""
 "" Customisations
-"
+""
 set encoding=utf-8
 set nocompatible
 set laststatus=2
 set t_Co=256
 set cursorline
 set background=dark
-let g:pyflakes_use_quickfix = 0
-"let g:neocomplcache_enable_at_startup = 1
 let g:Powerline_symbols = 'unicode'
+
 
 if filereadable(expand("~/.vimrc.before"))
   source ~/.vimrc.before
@@ -46,5 +45,5 @@ call janus#load_pathogen()
 
 " .vimrc.after is loaded after the plugins have loaded
 
+colorscheme molokai
 
-colorscheme vividchalk
