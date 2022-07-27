@@ -1,0 +1,17 @@
+{
+    "workbench.colorTheme": "Gruvbox Dark Hard",
+    "telemetry.telemetryLevel": "off",
+    "editor.fontFamily": "'JetBrains Mono', monospace",
+    "workbench.iconTheme": "vs-nomo-dark",
+    "gitlens.codeLens.authors.enabled": false,
+    "gitlens.codeLens.enabled": false,
+    "files.trimTrailingWhitespace": true,
+    "editor.fontLigatures": true,
+    "doxdocgen.c.firstLine": "/** ",
+    "editor.minimap.enabled": false,
+    "editor.fontSize": 16,
+    "C_Cpp.clang_format_fallbackStyle": "Google",
+    "editor.semanticTokenColorCustomizations": {
+        "enabled": true
+    }
+}
