@@ -1,56 +1,61 @@
-export CPATH=/opt/local/include
-export LIBRARY_PATH=/opt/local/lib
-export DYLD_FALLBACK_LIBRARY_PATH=$DYLD_FALLBACK_LIBRARY_PATH:/opt/local/lib:/usr/local/lib
-export PATH=/opt/local/bin:$PATH
+# Install oh-my-bash from https://github.com/ohmybash/oh-my-bash
+
+# Enable the subsequent settings only in interactive sessions
+case $- in
+  *i*) ;;
+    *) return;;
+esac
+
+# Path to your oh-my-bash installation.
+export OSH=/home/billy/.oh-my-bash
+
+OSH_THEME="agnoster"
+
+# To disable the uses of "sudo" by oh-my-bash, please set "false" to
+# this variable.  The default behavior for the empty value is "true".
+OMB_USE_SUDO=true
+
+completions=(
+  git
+  #composer
+  #ssh
+)
+
+aliases=(
+  general
+)
+
+plugins=(
+  git
+  bashmarks
+)
 
 
-## prompt
-[ -z "$PS1" ] && return
+source "$OSH"/oh-my-bash.sh
 
-# Basic options
-export HISTCONTROL=ignoredups
-export COLORFGBG='default;default'
+# User configuration
+# export MANPATH="/usr/local/man:$MANPATH"
 
-# some colors
-export CLICOLOR=1
-export TERM=xterm-color
-export LSCOLORS=exfxcxdxbxegedabagacad
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
 
-#Aliases
-alias ls='ls -h'
-alias ll='ls -l'
-alias la='ls -A'
-alias l='ls -CF'
-alias svim='sudo vim'
-alias h='cd'
-alias ..='cd ..'
-alias cd..='cd ..'
-alias ...='cd ../..'
-alias cim='vim'
-alias back='cd $OLDPWD'
-alias root='sudo su'
-alias runlevel='sudo /sbin/init'
-alias grep='grep --color=auto'
-alias dfh='df -h'
-alias gvim='gvim -geom 84x26'
-alias start='dbus-launch startx'
+# Preferred editor for local and remote sessions
+ if [[ -n $SSH_CONNECTION ]]; then
+   export EDITOR='vim'
+ else
+   export EDITOR='vim'
+ fi
 
-# Prompt
-BGREEN='\[\033[1;32m\]'
-GREEN='\[\033[0;32m\]'
-BRED='\[\033[1;31m\]'
-RED='\[\033[0;31m\]'
-BBLUE='\[\033[1;34m\]'
-BLUE='\[\033[0;34m\]'
-NORMAL='\[\033[00m\]'
-PS1="${BLUE}(${RED}\w${BLUE}) ${NORMAL}\h ${RED}\$ ${NORMAL}"
+# Install rustup , then install
+# - cargo install exa, procs, bat ripgrep, find-fd
 
+# Setup rust env
+. "$HOME/.cargo/env"
 
-################# Qt
-PATH=/Developer/SDKs/QtSDK/Desktop/Qt/4.8.0/gcc/bin:$PATH
-#PATH=/usr/local/Trolltech/Qt-4.8.0/bin:$PATH 
-export PATH 
-QTDIR=/Developer/SDKs/QtSDK/Desktop/Qt/4.8.0/gcc
-#QTDIR=/usr/local/Trolltech/Qt-4.8.0 
-export QTDIR 
-
+# Aliases
+alias ls='exa --icons'
+alias ll='exa -a --icons'
+alias ps='procs'
+alias cat='bat'
+alias grep='rg'
+alias find='fd'
